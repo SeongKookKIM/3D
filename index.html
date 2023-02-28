@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>3D</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+
+    <style>
+      body {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+      }
+      #panolens {
+        width: 100%;
+        height: 100vh;
+        cursor: grab;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <div id="panolens"></div>
+    <div class="box"></div>
+    <!-- partial -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/panolens@0.11.0/build/panolens.min.js"></script>
+    <script>
+      const panoramaViewer = (element, image) => {
+        let el = document.querySelector(element);
+        let panorama = new PANOLENS.ImagePanorama(image);
+        let viewer = new PANOLENS.Viewer({
+          container: el,
+          cameraFov: 100,
+          autoRotate: true,
+          autoRotateSpeed: 0.00001,
+          autoRotateActivationDuration: 1,
+        });
+        viewer.add(panorama);
+      };
+
+      const element = "#panolens";
+      const image = "ssa.jpg";
+      panoramaViewer(element, image);
+    </script>
+  </body>
+</html>
